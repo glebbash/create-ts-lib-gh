@@ -1,6 +1,6 @@
 // TODO: add tests
 
-import { add } from "./<%= library.name %>";
+import { add } from './<%= library.name %>';
 
 describe('add', () => {
   it('adds two numbers', () => {

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "<%= library.description %>",
   "keywords": [
-    <%= library.keywords.map(k => `"${k}"`).join(",\n    ") %>
+    <%- library.keywords.map((k) => `"${k}"`).join(",\n    ") %>
   ],
   "main": "dist/lib/<%= library.name %>.js",
   "typings": "dist/types/<%= library.name %>.d.ts",
