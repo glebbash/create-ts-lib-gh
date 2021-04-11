@@ -19,7 +19,7 @@ export async function getProjectInfo(): Promise<ProjectInfo> {
     {
       name: 'library.description',
       message: 'Description:',
-      filter: (s) => s.replaceAll('\\', '\\\\').replaceAll('"', '\\"').replace('\n', '\\n'),
+      filter: (s: string) => s.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n'),
     },
     {
       name: 'library.keywords',
