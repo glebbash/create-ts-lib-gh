@@ -1,19 +1,19 @@
 {
-  "name": "<%= LIBRARY_NAME %>",
+  "name": "<%= library.name %>",
   "version": "0.0.0",
-  "description": "<%= LIBRARY_DESCRIPTION %>",
+  "description": "<%= library.description %>",
   "keywords": [
-    <%= LIBRARY_TAGS %>
+    <%= library.keywords.map(k => `"${k}"`).join(",\n    ") %>
   ],
-  "main": "dist/lib/<%= LIBRARY_NAME %>.js",
-  "typings": "dist/types/<%= LIBRARY_NAME %>.d.ts",
+  "main": "dist/lib/<%= library.name %>.js",
+  "typings": "dist/types/<%= library.name %>.d.ts",
   "files": [
     "dist"
   ],
-  "author": "<%= AUTHOR_NAME %> <%= AUTHOR_EMAIL %>",
+  "author": "<%= author.name %> <<%= author.email %>>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/<%= GITHUB_REPOSITORY_NAME %>"
+    "url": "https://github.com/<%= github.repository %>"
   },
   "license": "MIT",
   "engines": {

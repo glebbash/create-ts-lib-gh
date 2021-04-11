@@ -1,18 +1,20 @@
-# <%= LIBRARY_NAME %>
+# <%= library.name %>
 
-[![Deploy](https://github.com/<%= GITHUB_REPOSITORY_NAME %>/workflows/build-test-publish/badge.svg)](https://github.com/<%= GITHUB_REPOSITORY_NAME %>/actions)
-[![Coverage Status](https://coveralls.io/repos/github/<%= GITHUB_REPOSITORY_NAME %>/badge.svg?branch=master)](https://coveralls.io/github/<%= GITHUB_REPOSITORY_NAME %>?branch=master)
+[![Deploy](https://github.com/<%= github.repository %>/workflows/build-test-publish/badge.svg)](https://github.com/<%= github.repository %>/actions)
+[![Coverage Status](https://coveralls.io/repos/github/<%= github.repository %>/badge.svg?branch=master)](https://coveralls.io/github/<%= github.repository %>?branch=master)
 
-<%= LIBRARY_DESCRIPTION %>
+<%= library.description %>
 
 <!-- TODO: add extended examples -->
 
 Installation:
 
 ```sh
-npm i <%= LIBRARY_NAME %>
+npm i <%= library.name %>
 ```
 
 <!-- TODO: add usage examples -->
+
+Bootstrapped with: [gh-create-ts-lib](https://github.com/glebbash/gh-create-ts-lib)
 
 This project is [Mit Licensed](LICENSE).
