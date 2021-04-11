@@ -1,13 +1,12 @@
-import { resolve } from 'path';
-import { readdir, readFile, rename, writeFile } from 'fs/promises';
-import { join } from 'node:path';
+import { mkdir, readdir, readFile, rename, writeFile } from 'fs/promises';
+import { join, dirname } from 'path';
 import { render } from 'ejs';
 
 export type ProjectInfo = {
   library: {
     name: string;
     description: string;
-    tags: string[];
+    keywords: string[];
   };
   author: {
     name: string;
@@ -37,19 +36,23 @@ async function copyAndTransform(inputDir: string, outputDir: string, info: Proje
 
     const fileContent = await readFile(templateFile, { encoding: 'utf-8' });
     const transformedContent = render(fileContent, info);
+
+    try {
+      await mkdir(dirname(outputFile), { recursive: true });
+    } catch (ignored) {}
+
     await writeFile(outputFile, transformedContent);
   }
 }
 
-async function* listFileNames(dir: string, subDir = '/'): AsyncGenerator<string> {
-  const dirents = await readdir(dir, { withFileTypes: true });
+async function* listFileNames(absoluteDir: string, relativeDir = ''): AsyncGenerator<string> {
+  const dirents = await readdir(absoluteDir, { withFileTypes: true });
   for (const dirent of dirents) {
     const direntName = dirent.name;
-    const absoluteFilePath = resolve(dir, direntName);
     if (dirent.isDirectory()) {
-      yield* listFileNames(absoluteFilePath, direntName);
+      yield* listFileNames(join(absoluteDir, direntName), join(relativeDir, direntName));
     } else {
-      yield resolve(subDir, direntName);
+      yield join(relativeDir, direntName);
     }
   }
 }
