@@ -1,0 +1,63 @@
+{
+  "name": "<%= LIBRARY_NAME %>",
+  "version": "0.0.0",
+  "description": "<%= LIBRARY_DESCRIPTION %>",
+  "keywords": [
+    <%= LIBRARY_TAGS %>
+  ],
+  "main": "dist/lib/<%= LIBRARY_NAME %>.js",
+  "typings": "dist/types/<%= LIBRARY_NAME %>.d.ts",
+  "files": [
+    "dist"
+  ],
+  "author": "<%= AUTHOR_NAME %> <%= AUTHOR_EMAIL %>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/<%= GITHUB_REPOSITORY_NAME %>"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "lint": "eslint --fix 'src/**/*.ts'",
+    "prebuild": "rimraf dist",
+    "build": "tsc --project tsconfig.build.json",
+    "build:docs": "typedoc --out docs --theme minimal src",
+    "test": "jest --config jest.config.ts --coverage",
+    "test:watch": "jest --config jest.config.ts --coverage --watch",
+    "test:prod": "npm run lint && npm run test -- --no-cache"
+  },
+  "lint-staged": {
+    "{src,test}/**/*.ts": [
+      "eslint --fix"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "11.0.0",
+    "@commitlint/config-conventional": "11.0.0",
+    "@types/jest": "26.0.19",
+    "@types/node": "^14.14.14",
+    "@typescript-eslint/eslint-plugin": "^4.10.0",
+    "@typescript-eslint/parser": "^4.10.0",
+    "eslint": "^7.16.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "husky": "^5.1.3",
+    "jest": "26.6.3",
+    "jest-config": "26.6.3",
+    "lint-staged": "^10.5.3",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "semantic-release": "^17.4.0",
+    "ts-jest": "^26.4.4",
+    "ts-node": "^9.1.1",
+    "typedoc": "^0.20.28",
+    "typescript": "^4.1.3"
+  }
+}
