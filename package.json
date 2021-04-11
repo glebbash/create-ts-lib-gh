@@ -13,6 +13,9 @@
   "files": [
     "dist"
   ],
+  "bin": {
+    "gh-create-ts-lib": "dist/lib/gh-create-ts-lib.js"
+  },
   "author": "glebbash <glebbash@gmail.com>",
   "repository": {
     "type": "git",
