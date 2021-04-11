@@ -1,3 +1,7 @@
+/* istanbul ignore file */
+
+// TODO: test this
+
 import { mkdir, readdir, readFile, rename, writeFile } from 'fs/promises';
 import { join, dirname } from 'path';
 import { render } from 'ejs';

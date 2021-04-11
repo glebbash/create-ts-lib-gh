@@ -1,3 +1,7 @@
+/* istanbul ignore file */
+
+// TODO: test this
+
 import { ProjectInfo } from './setup-project';
 import { prompt } from 'inquirer';
 
