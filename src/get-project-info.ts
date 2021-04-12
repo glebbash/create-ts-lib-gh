@@ -5,12 +5,14 @@
 import { ProjectInfo } from './setup-project';
 import { prompt } from 'inquirer';
 
-type PartialInfo = Omit<ProjectInfo, 'github'> & { githubUsername: string };
-
 const NPM_LIB_PATTERN = /^[a-z][a-z-]{0,213}$/;
+const KEYWORDS_PATTERN = /^[a-z][a-z-]*(?:,[a-z][a-z-]*)*$/;
+
+const encodeStringFriendly = (s: string) =>
+  s.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n');
 
 export async function getProjectInfo(): Promise<ProjectInfo> {
-  const { githubUsername, ...partialInfo }: PartialInfo = await prompt([
+  return await prompt([
     {
       name: 'library.name',
       message: 'Library name:',
@@ -19,35 +21,35 @@ export async function getProjectInfo(): Promise<ProjectInfo> {
     {
       name: 'library.description',
       message: 'Description:',
-      filter: (s: string) => s.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n'),
+      filter: encodeStringFriendly,
     },
     {
       name: 'library.keywords',
-      message: 'Keywords:',
-      filter: (keywords: string) =>
-        keywords.trim().length < 1 ? [] : keywords.split(',').map((k) => k.trim()),
+      message: 'Keywords (separate with spaces):',
+      validate: (s) => KEYWORDS_PATTERN.test(s),
+      filter: (keywords: string) => keywords.split(' '),
     },
     {
       name: 'author.name',
       message: 'Author:',
+      filter: encodeStringFriendly,
     },
     {
       name: 'author.email',
       message: 'Email:',
+      filter: encodeStringFriendly,
     },
     {
-      name: 'githubUsername',
+      name: 'github.username',
       message: 'Github username:',
+      filter: encodeStringFriendly,
+      default: (info: ProjectInfo) => info.author.name,
     },
-  ]);
-
-  const githubInfo: ProjectInfo['github'] = await prompt([
     {
       name: 'repository',
       message: 'Github repository:',
-      default: `${githubUsername}/${partialInfo.library.name}`,
+      default: (info: ProjectInfo & { github: { username: string } }) =>
+        `${info.github.username}/${info.library.name}`,
     },
   ]);
-
-  return { ...partialInfo, github: githubInfo };
 }
