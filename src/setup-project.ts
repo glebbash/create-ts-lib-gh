@@ -21,6 +21,9 @@ export type ProjectInfo = {
   };
 };
 
+const encodeStringFriendly = (s: string) =>
+  s.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n');
+
 export async function setupProject(info: ProjectInfo): Promise<void> {
   const templateRoot = join(__dirname, '..', 'template');
   const libraryRoot = join(process.cwd(), info.library.name);
@@ -34,12 +37,14 @@ export async function setupProject(info: ProjectInfo): Promise<void> {
 }
 
 async function copyAndTransform(inputDir: string, outputDir: string, info: ProjectInfo) {
+  const renderInfo = { ...info, str: encodeStringFriendly };
+
   for await (const fileName of listFileNames(inputDir)) {
     const templateFile = join(inputDir, fileName);
     const outputFile = join(outputDir, fileName);
 
     const fileContent = await readFile(templateFile, { encoding: 'utf-8' });
-    const transformedContent = render(fileContent, info);
+    const transformedContent = render(fileContent, renderInfo);
 
     try {
       await mkdir(dirname(outputFile), { recursive: true });
