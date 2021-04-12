@@ -1,5 +1,5 @@
 {
-  "name": "gh-create-ts-lib",
+  "name": "create-ts-lib-gh",
   "version": "0.0.0",
   "description": "Cli to create public typescript libraries hosted on github",
   "keywords": [
@@ -8,18 +8,18 @@
     "library",
     "typescript"
   ],
-  "main": "dist/lib/gh-create-ts-lib.js",
-  "typings": "dist/types/gh-create-ts-lib.d.ts",
+  "main": "dist/lib/create-ts-lib-gh.js",
+  "typings": "dist/types/create-ts-lib-gh.d.ts",
   "files": [
     "dist"
   ],
   "bin": {
-    "gh-create-ts-lib": "dist/lib/gh-create-ts-lib.js"
+    "create-ts-lib-gh": "dist/lib/create-ts-lib-gh.js"
   },
   "author": "glebbash <glebbash@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/glebbash/gh-create-ts-lib"
+    "url": "https://github.com/glebbash/create-ts-lib-gh"
   },
   "license": "MIT",
   "engines": {

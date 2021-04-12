@@ -15,6 +15,6 @@ npm i <%= library.name %>
 
 <!-- TODO: add usage examples -->
 
-Bootstrapped with: [gh-create-ts-lib](https://github.com/glebbash/gh-create-ts-lib)
+Bootstrapped with: [create-ts-lib-gh](https://github.com/glebbash/create-ts-lib-gh)
 
 This project is [Mit Licensed](LICENSE).

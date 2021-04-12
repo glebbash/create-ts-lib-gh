@@ -1,14 +1,14 @@
-# gh-create-ts-lib
+# create-ts-lib-gh
 
-[![Deploy](https://github.com/glebbash/gh-create-ts-lib/workflows/build/badge.svg)](https://github.com/glebbash/gh-create-ts-lib/actions)
-[![Coverage Status](https://coveralls.io/repos/github/glebbash/gh-create-ts-lib/badge.svg?branch=master)](https://coveralls.io/github/glebbash/gh-create-ts-lib?branch=master)
+[![Deploy](https://github.com/glebbash/create-ts-lib-gh/workflows/build/badge.svg)](https://github.com/glebbash/create-ts-lib-gh/actions)
+[![Coverage Status](https://coveralls.io/repos/github/glebbash/create-ts-lib-gh/badge.svg?branch=master)](https://coveralls.io/github/glebbash/create-ts-lib-gh?branch=master)
 
 Cli to create public typescript libraries hosted on github.
 
 Usage:
 
 ```sh
-npx gh-create-ts-lib
+npx create-ts-lib-gh
 ```
 
 What's included:
