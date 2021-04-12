@@ -1,4 +1,7 @@
 {
+  "ts-node": {
+    "files": true
+  },
   "compilerOptions": {
     "moduleResolution": "node",
     "target": "es5",
@@ -13,8 +16,10 @@
     "skipLibCheck": true,
     "declarationDir": "dist/types",
     "outDir": "dist/lib",
+    "esModuleInterop": true,
     "typeRoots": [
-      "node_modules/@types"
+      "node_modules/@types",
+      "src/types",
     ]
   },
   "include": [

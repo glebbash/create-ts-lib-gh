@@ -3,53 +3,59 @@
 // TODO: test this
 
 import { ProjectInfo } from './setup-project';
-import { prompt } from 'inquirer';
+import input from '@inquirer/input';
 
 const NPM_LIB_PATTERN = /^[a-z][a-z-]{0,213}$/;
-const KEYWORDS_PATTERN = /^[a-z][a-z-]*(?:,[a-z][a-z-]*)*$/;
-
-const encodeStringFriendly = (s: string) =>
-  s.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n');
+const KEYWORDS_PATTERN = /^[a-z][a-z-]*(?: [a-z][a-z-]*)*$/;
+const GH_USERNAME_PATTERN = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i;
 
 export async function getProjectInfo(): Promise<ProjectInfo> {
-  return await prompt([
-    {
-      name: 'library.name',
-      message: 'Library name:',
-      validate: (s) => NPM_LIB_PATTERN.test(s),
+  const libraryName = await input({
+    message: 'Library name:',
+    validate: (s) => NPM_LIB_PATTERN.test(s),
+  });
+
+  const libraryDescription = await input({
+    message: 'Description:',
+    validate: (s) => NPM_LIB_PATTERN.test(s),
+  });
+
+  const libraryKeywords = await input({
+    message: 'Keywords (separate with spaces):',
+    validate: (s) => KEYWORDS_PATTERN.test(s),
+  }).then((keywords) => keywords.split(' '));
+
+  const authorName = await input({
+    message: 'Author:',
+  });
+
+  const authorEmail = await input({
+    message: 'Email:',
+  });
+
+  const githubUsername = await input({
+    message: 'Github username:',
+    default: authorName,
+    validate: (s) => GH_USERNAME_PATTERN.test(s),
+  });
+
+  const githubRepo = await input({
+    message: 'Github repository:',
+    default: `${githubUsername}/${libraryName}`,
+  });
+
+  return {
+    library: {
+      name: libraryName,
+      description: libraryDescription,
+      keywords: libraryKeywords,
     },
-    {
-      name: 'library.description',
-      message: 'Description:',
-      filter: encodeStringFriendly,
+    author: {
+      name: authorName,
+      email: authorEmail,
     },
-    {
-      name: 'library.keywords',
-      message: 'Keywords (separate with spaces):',
-      validate: (s) => KEYWORDS_PATTERN.test(s),
-      filter: (keywords: string) => keywords.split(' '),
+    github: {
+      repository: githubRepo,
     },
-    {
-      name: 'author.name',
-      message: 'Author:',
-      filter: encodeStringFriendly,
-    },
-    {
-      name: 'author.email',
-      message: 'Email:',
-      filter: encodeStringFriendly,
-    },
-    {
-      name: 'github.username',
-      message: 'Github username:',
-      filter: encodeStringFriendly,
-      default: (info: ProjectInfo) => info.author.name,
-    },
-    {
-      name: 'repository',
-      message: 'Github repository:',
-      default: (info: ProjectInfo & { github: { username: string } }) =>
-        `${info.github.username}/${info.library.name}`,
-    },
-  ]);
+  };
 }
