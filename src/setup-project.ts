@@ -34,13 +34,15 @@ export async function setupProject(info: ProjectInfo): Promise<void> {
 
   await copyAndTransform(templateRoot, libraryRoot, info);
 
-  const src = (fileName: string) => join(libraryRoot, 'src', fileName);
+  const out = (...path: string[]) => join(libraryRoot, ...path);
+  const src = (fileName: string) => out('src', fileName);
 
+  await rename(out('.out-gitignore'), out('.gitignore'));
   await rename(src('lib-name.ts'), src(`${info.library.name}.ts`));
   await rename(src('lib-name.spec.ts'), src(`${info.library.name}.spec.ts`));
 
   try {
-    await exec('git init');
+    await exec(`cd ${info.library.name} && git init`);
   } catch (err) {
     console.error('Cannot initialize git repo');
   }
