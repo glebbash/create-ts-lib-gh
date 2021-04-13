@@ -14,8 +14,8 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "declarationDir": "dist/types",
-    "outDir": "dist/lib",
+    "declarationDir": "dist/@types",
+    "outDir": "dist",
     "esModuleInterop": true,
     "typeRoots": [
       "node_modules/@types",

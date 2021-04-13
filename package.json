@@ -8,8 +8,8 @@
     "library",
     "typescript"
   ],
-  "main": "dist/lib/create-ts-lib-gh.js",
-  "typings": "dist/types/create-ts-lib-gh.d.ts",
+  "main": "dist/create-ts-lib-gh.js",
+  "typings": "dist/@types/create-ts-lib-gh.d.ts",
   "files": [
     "dist",
     "template"
