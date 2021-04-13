@@ -6,7 +6,7 @@ import { mkdir, readdir, readFile, rename, writeFile } from 'fs/promises';
 import { join, dirname } from 'path';
 import { render } from 'ejs';
 import child_process from 'child_process';
-import { promisify } from 'node:util';
+import { promisify } from 'util';
 
 const exec = promisify(child_process.exec);
 
