@@ -15,7 +15,7 @@
     "template"
   ],
   "bin": {
-    "create-ts-lib-gh": "dist/lib/create-ts-lib-gh.js"
+    "create-ts-lib-gh": "dist/create-ts-lib-gh.js"
   },
   "author": "glebbash <glebbash@gmail.com>",
   "repository": {
