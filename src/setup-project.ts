@@ -5,6 +5,10 @@
 import { mkdir, readdir, readFile, rename, writeFile } from 'fs/promises';
 import { join, dirname } from 'path';
 import { render } from 'ejs';
+import child_process from 'child_process';
+import { promisify } from 'node:util';
+
+const exec = promisify(child_process.exec);
 
 export type ProjectInfo = {
   library: {
@@ -34,6 +38,12 @@ export async function setupProject(info: ProjectInfo): Promise<void> {
 
   await rename(src('lib-name.ts'), src(`${info.library.name}.ts`));
   await rename(src('lib-name.spec.ts'), src(`${info.library.name}.spec.ts`));
+
+  try {
+    await exec('git init');
+  } catch (err) {
+    console.error('Cannot initialize git repo');
+  }
 }
 
 async function copyAndTransform(inputDir: string, outputDir: string, info: ProjectInfo) {
