@@ -17,7 +17,6 @@ export async function getProjectInfo(): Promise<ProjectInfo> {
 
   const libraryDescription = await input({
     message: 'Description:',
-    validate: (s) => NPM_LIB_PATTERN.test(s),
   });
 
   const libraryKeywords = await input({
