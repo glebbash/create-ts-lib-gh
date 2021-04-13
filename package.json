@@ -11,7 +11,8 @@
   "main": "dist/lib/create-ts-lib-gh.js",
   "typings": "dist/types/create-ts-lib-gh.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "template"
   ],
   "bin": {
     "create-ts-lib-gh": "dist/lib/create-ts-lib-gh.js"
