@@ -6,7 +6,7 @@
     <%- library.keywords.map((k) => `"${str(k)}"`).join(",\n    ") %>
   ],
   "main": "dist/<%= str(library.name) %>.js",
-  "typings": "dist/@types/<%= str(library.name) %>.d.ts",
+  "types": "dist/<%= str(library.name) %>.d.ts",
   "files": [
     "dist"
   ],

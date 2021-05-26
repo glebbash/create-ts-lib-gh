@@ -2,8 +2,9 @@
 
 // TODO: test this
 
-import { ProjectInfo } from './setup-project';
 import input from '@inquirer/input';
+
+import { ProjectInfo } from './setup-project';
 
 const NPM_LIB_PATTERN = /^[a-z][a-z-]{0,213}$/;
 const KEYWORDS_PATTERN = /^[a-z][a-z-]*(?: [a-z][a-z-]*)*$/;

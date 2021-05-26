@@ -9,7 +9,7 @@
     "typescript"
   ],
   "main": "dist/create-ts-lib-gh.js",
-  "typings": "dist/create-ts-lib-gh.d.ts",
+  "types": "dist/create-ts-lib-gh.d.ts",
   "files": [
     "dist",
     "template"
