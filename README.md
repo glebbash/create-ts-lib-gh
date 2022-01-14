@@ -23,4 +23,4 @@ What's included:
 - Testing:
   - Jest
 
-This project is [Mit Licensed](LICENSE).
+This project is [MIT Licensed](LICENSE).
