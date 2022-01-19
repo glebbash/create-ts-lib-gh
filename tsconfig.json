@@ -15,7 +15,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "outDir": "dist",
+    "outDir": "lib",
     "esModuleInterop": true,
   },
   "include": [

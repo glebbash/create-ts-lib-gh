@@ -5,10 +5,10 @@
   "keywords": [
     <%- library.keywords.map((k) => `"${str(k)}"`).join(",\n    ") %>
   ],
-  "main": "dist/<%= str(library.name) %>.js",
-  "types": "dist/<%= str(library.name) %>.d.ts",
+  "main": "lib/<%= str(library.name) %>.js",
+  "types": "lib/<%= str(library.name) %>.d.ts",
   "files": [
-    "dist"
+    "lib"
   ],
   "author": "<%= author.name %> <<%= str(author.email) %>>",
   "repository": {
@@ -21,7 +21,7 @@
   },
   "scripts": {
     "lint": "eslint --fix 'src/**/*.ts'",
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf lib",
     "build": "tsc --project tsconfig.build.json",
     "build:docs": "typedoc --out docs src/<%= str(library.name) %>.ts",
     "test": "jest --config jest.config.ts --coverage",

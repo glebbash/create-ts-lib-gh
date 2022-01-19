@@ -8,14 +8,14 @@
     "library",
     "typescript"
   ],
-  "main": "dist/create-ts-lib-gh.js",
-  "types": "dist/create-ts-lib-gh.d.ts",
+  "main": "lib/create-ts-lib-gh.js",
+  "types": "lib/create-ts-lib-gh.d.ts",
   "files": [
-    "dist",
+    "lib",
     "template"
   ],
   "bin": {
-    "create-ts-lib-gh": "dist/create-ts-lib-gh.js"
+    "create-ts-lib-gh": "lib/create-ts-lib-gh.js"
   },
   "author": "glebbash <glebbash@gmail.com>",
   "repository": {
@@ -28,7 +28,7 @@
   },
   "scripts": {
     "lint": "eslint --fix 'src/**/*.ts'",
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf lib",
     "build": "tsc --project tsconfig.build.json",
     "build:docs": "typedoc --out docs src/create-ts-lib-gh.ts",
     "test": "jest --config jest.config.ts --coverage",
