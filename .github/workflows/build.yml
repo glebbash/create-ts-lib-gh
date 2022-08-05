@@ -3,22 +3,26 @@ on: ["push", "pull_request"]
 
 jobs:
   test:
-    name: Build and test
-    runs-on: ubuntu-20.04
+    name: Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [14, 16]
     steps:
       - uses: actions/checkout@v1
 
-      - name: Use Node.js 16
+      - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v1
         with:
-          node-version: 16
+          node-version: ${{ matrix.node }}
 
       - name: Test and generate coverage
         run: |
           npm ci
-          npm run test:prod
+          npm run test:ci
 
       - name: Coveralls
+        if: matrix.node == 16
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
