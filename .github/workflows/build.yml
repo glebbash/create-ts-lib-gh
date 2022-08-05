@@ -16,6 +16,11 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      - name: Update npm
+        if: matrix.node == 14
+        run: |
+          npm i -g npm@latest
+
       - name: Test and generate coverage
         run: |
           npm ci
