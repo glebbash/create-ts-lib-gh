@@ -3,7 +3,7 @@
 [![Deploy](https://github.com/glebbash/create-ts-lib-gh/workflows/build/badge.svg)](https://github.com/glebbash/create-ts-lib-gh/actions)
 [![Coverage Status](https://coveralls.io/repos/github/glebbash/create-ts-lib-gh/badge.svg?branch=master)](https://coveralls.io/github/glebbash/create-ts-lib-gh?branch=master)
 
-Cli to create public typescript libraries hosted on github.
+Cli to create public typescript libraries hosted on GitHub and published to NPM.
 
 Usage:
 
